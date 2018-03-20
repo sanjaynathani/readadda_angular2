@@ -10,11 +10,10 @@ import { Observable } from 'rxjs/Observable';
   providers: [ReadBoardService]
 })
 export class ReadBoardComponent implements OnInit {
-  // stories: Story[];
+  stories: Story[] = new Array();
   selectedStory: Story;
   errorMessage: string;
   showAdvanceSearch = false;
-  stories: Observable<Story[]>;
   constructor(private _readboardService: ReadBoardService, private router: Router) { }
   ngOnInit() {
       console.info('Loading ReadBoard');
@@ -25,6 +24,7 @@ export class ReadBoardComponent implements OnInit {
   }
   getStories() {
       console.info('Loading getStories');
+    console.info('stories' + this.stories);
       this._readboardService.getStories().subscribe(
           stories => this.stories = this.stories.concat(stories),
           error =>  this.errorMessage = <any>error);
