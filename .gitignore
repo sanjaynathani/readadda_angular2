@@ -43,4 +43,4 @@ testem.log
 Thumbs.db
 
 # Temp/Unnecessary files
-.package-lock.json
+package-lock.json
