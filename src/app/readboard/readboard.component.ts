@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Story } from '../entity/story';
 import { ReadBoardService } from './readboard.service';
-import { Router } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
@@ -14,7 +14,7 @@ export class ReadBoardComponent implements OnInit {
   selectedStory: Story;
   errorMessage: string;
   showAdvanceSearch = false;
-  constructor(private _readboardService: ReadBoardService, private router: Router) { }
+  constructor(private _readboardService: ReadBoardService, private router: Router, private route: ActivatedRoute) { }
   ngOnInit() {
       console.info('Loading ReadBoard');
       this.getStories();
@@ -39,6 +39,7 @@ export class ReadBoardComponent implements OnInit {
     }
   }
   openStory(storyId) {
-      this.router.navigate(['StoryBoard', {'storyId': storyId}]);
+      this.router.navigate(['story', {storyId: storyId}], {relativeTo: this.route});
+
   }
 }

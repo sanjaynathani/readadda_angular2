@@ -4,7 +4,6 @@ import {AuthenticationComponent} from './security/authentication.component';
 import {AuthGuard} from './security/authGuard';
 import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
-import {AppNavbarComponent} from './app-navbar/app-navbar.component';
 
 const MainRoutes: Routes = [
   {

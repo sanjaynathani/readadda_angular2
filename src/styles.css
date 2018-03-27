@@ -1,2 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
+
+.searchBox{
+  background-color: white;
+  border-bottom: ridge;
+  border-bottom-width: 2px;
+  position: fixed;
+  top: 50px;
+  z-index: 1;
+  width: 80%;
+  padding-top: 10px;
+}
