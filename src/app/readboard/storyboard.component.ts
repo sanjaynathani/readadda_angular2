@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Story } from '../entity/story';
-import { ActivatedRouteSnapshot } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import {ReadBoardService} from './readboard.service';
 
@@ -14,8 +14,9 @@ export class StoryBoardComponent implements OnInit {
   story: Story;
   errorMessage: string;
 
-  constructor(private activatedRoute: ActivatedRouteSnapshot, private _readBoardService: ReadBoardService, private router: Router) {
-    this.storyId = activatedRoute.paramMap.get('storyId');
+  constructor(private activatedRoute: ActivatedRoute, private _readBoardService: ReadBoardService, private router: Router) {
+    console.log('Query Params === ' + JSON.stringify(activatedRoute.snapshot.params));
+    this.storyId = activatedRoute.snapshot.params['storyId'];
   }
 
   ngOnInit() {
@@ -28,6 +29,5 @@ export class StoryBoardComponent implements OnInit {
     this._readBoardService.getStory(this.storyId).subscribe(
       story => this.story = story,
       error => this.errorMessage = <any>error);
-    console.info('Story = ' + this.story);
   }
 }
