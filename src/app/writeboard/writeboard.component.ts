@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CanActivate } from '@angular/router';
 import { isLoggedIn } from '../security/authentication.service';
-import { CKEDITOR } from 'ckeditor';
+//import { CKEDITOR } from 'ckeditor';
 
 @Component({
   selector: 'writeboard',
@@ -15,7 +15,7 @@ export class WriteBoardComponent implements OnInit {
 
   ngOnInit() {
       console.info('Loading WriteBoard');
-      CKEDITOR.replace( 'editor');
+      //CKEDITOR.replace( 'editor');
   }
 
 }
