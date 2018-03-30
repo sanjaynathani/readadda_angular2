@@ -23,7 +23,7 @@ export class AuthenticationComponent implements OnInit {
   login = true;
   loginForm: FormGroup;
 
-  constructor(public afAuth: AngularFireAuth, public af: AngularFireDatabase, public authentication: Authentication, private _authenticationService: AuthenticationService, private router: Router) {
+ constructor(public afAuth: AngularFireAuth, public af: AngularFireDatabase, public authentication: Authentication, private _authenticationService: AuthenticationService, private router: Router) {
      console.info('Auth Comp Constructor');
      this.authentication = authentication;
   }
@@ -47,16 +47,18 @@ export class AuthenticationComponent implements OnInit {
     console.info('Login username = ' + this.loginForm.value.username);
     console.info('Login password = ' + this.loginForm.value.password);
 
-    /* this._authenticationService.login(form.controls['name'].value, form.controls['pwd'].value)
+    this._authenticationService.login(this.loginForm.value.username, this.loginForm.value.password)
       .subscribe(
-        token => {console.info('No error'+token);
-            if(token === ""){
-               this.error=true;
-            }else{
-               this.error=false;
-               this.router.navigate( ['/readBoard'])}
-            }
-      ); */
+        token => {
+          if (token === '') {
+            this.error = true;
+          } else {
+            this.error = false;
+            console.info('No error === ' + token);
+            console.info('Is LogedIn === ' + this.authentication.isLoggedIn);
+            this.router.navigate(['readBoard']);
+          }
+        });
   }
 
   showRegister() {

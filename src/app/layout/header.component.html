@@ -6,8 +6,8 @@
   </button>
   <ul class="nav navbar-nav mr-auto">
     <li [class.active]="isSelected('/readboard')" class="nav-item"><a routerLink="/readBoard" class="nav-link text-light">ReadBoard</a></li>
-    <li *ngIf="authentication.isLoggedIn" [class.active]="isSelected('/writeboard')" class="nav-item text-light"><a
-      routerLink="/writeboard">WriteBoard</a>
+    <li [class.active]="isSelected('/writeboard')" class="nav-item"><a
+      routerLink="/writeboard"  class="nav-link text-light">WriteBoard</a>
     </li>
   </ul>
   <ul class="nav navbar-nav">

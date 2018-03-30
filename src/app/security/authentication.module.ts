@@ -18,6 +18,6 @@ import { AuthenticationRoutingModule } from './authentication.routing.module';
     AuthenticationRoutingModule,
 
   ],
-  providers: [AuthenticationService, Authentication, AuthGuard]
+  providers: []
 })
 export class AuthenticationModule { }

@@ -20,11 +20,11 @@ const MainRoutes: Routes = [
       path: 'readBoard',
       loadChildren: 'app/readboard/readboard.module#ReadBoardModule'
   },
-  /*{
+  {
       path: 'writeboard',
       loadChildren: 'app/writeboard/writeboard.module#WriteBoardModule',
-      canActivate: [AuthGuard]
-  },*/
+    canActivate: [AuthGuard]
+  },
   {
       path: 'authentication',
       loadChildren: 'app/security/authentication.module#AuthenticationModule',
