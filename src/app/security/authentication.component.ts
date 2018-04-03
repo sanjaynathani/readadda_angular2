@@ -1,13 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from '../security/authentication.service';
-import { Authentication } from '../security/authentication';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { emailValidator } from '../validator/emailValidator';
-import { regexPattern } from '../validator/regexPattern';
-import { AngularFireDatabase} from 'angularfire2/database';
-import { AngularFireAuth } from 'angularfire2/auth';
-import * as firebase from 'firebase/app';
+import {Component, OnInit} from '@angular/core';
+import {AuthenticationService} from '../security/authentication.service';
+import {Authentication} from '../security/authentication';
+import {FormGroup, FormControl, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
+import {emailValidator} from '../validator/emailValidator';
+import {regexPattern} from '../validator/regexPattern';
+import {AngularFireDatabase} from 'angularfire2/database';
+import {AngularFireAuth} from 'angularfire2/auth';
 
 @Component({
   selector: 'authentication',
@@ -23,16 +22,17 @@ export class AuthenticationComponent implements OnInit {
   login = true;
   loginForm: FormGroup;
 
- constructor(public afAuth: AngularFireAuth, public af: AngularFireDatabase, public authentication: Authentication, private _authenticationService: AuthenticationService, private router: Router) {
-     console.info('Auth Comp Constructor');
-     this.authentication = authentication;
+  constructor(public afAuth: AngularFireAuth, public af: AngularFireDatabase, public authentication: Authentication,
+              private _authenticationService: AuthenticationService, private router: Router) {
+    console.info('Auth Comp Constructor');
+    this.authentication = authentication;
   }
 
   ngOnInit() {
-      console.info('Loading Authentication');
-      this.createForm();
-      this.register = false;
-      this.login = true;
+    console.info('Loading Authentication');
+    this.createForm();
+    this.register = false;
+    this.login = true;
   }
 
   private createForm() {
@@ -71,7 +71,11 @@ export class AuthenticationComponent implements OnInit {
     this.register = false;
   }
 
-  get username() { return this.loginForm.get('username'); }
+  get username() {
+    return this.loginForm.get('username');
+  }
 
-  get password() { return this.loginForm.get('password'); }
+  get password() {
+    return this.loginForm.get('password');
+  }
 }

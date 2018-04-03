@@ -1,12 +1,20 @@
 <div style="width: 100%;" >
-    <form id="loginForm">
+    <form id="writeStoryForm">
         <h3><strong>Write your story</strong></h3>
         <div class="form-group">
             <label for="topicTitle">Title:</label>
             <input type="text" class="form-control" id="topicTitle" required/>
         </div>
 
-        <div id="editor"></div>    
+        <!--<div id="editor"></div>-->
+
+
+      <quill-editor [(ngModel)]="ckeditorContent"
+                    [options]="editorOptions"
+                    (blur)="onEditorBlured($event)"
+                    (focus)="onEditorFocused($event)"
+                    (ready)="onEditorCreated($event)"
+                    (change)="onContentChanged($event)" name="storyEditor"></quill-editor>
 
         <div class="form-group">
             <label for="topicSearchTags">Search Tags:</label>

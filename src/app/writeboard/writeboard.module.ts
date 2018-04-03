@@ -1,7 +1,9 @@
-import { NgModule } from '@angular/core';
-import { WriteBoardComponent } from './writeboard.component';
-import { CommonModule } from '@angular/common';
-import { ReadBoardRoutingModule } from './writeboard.routing.module';
+import {NgModule} from '@angular/core';
+import {WriteBoardComponent} from './writeboard.component';
+import {CommonModule} from '@angular/common';
+import {ReadBoardRoutingModule} from './writeboard.routing.module';
+import {FormsModule} from '@angular/forms';
+import { QuillEditorModule } from 'ngx-quill-editor';
 
 @NgModule({
   declarations: [
@@ -9,8 +11,11 @@ import { ReadBoardRoutingModule } from './writeboard.routing.module';
   ],
   imports: [
     CommonModule,
-    ReadBoardRoutingModule
+    ReadBoardRoutingModule,
+    QuillEditorModule,
+    FormsModule
   ],
   providers: []
 })
-export class WriteBoardModule { }
+export class WriteBoardModule {
+}
