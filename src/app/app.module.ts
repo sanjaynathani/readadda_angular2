@@ -9,7 +9,6 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AppRoutingModule } from './app.routing.module';
 import { AppComponent } from './app.component';
 import { environment } from './../environments/environment';
-import { AppNavbarComponent } from './app-navbar/app-navbar.component';
 import { AuthenticationModule } from './security/authentication.module';
 import { Authentication } from './security/authentication';
 import { AuthenticationService } from './security/authentication.service';
@@ -35,7 +34,6 @@ export const firebaseConfig = {
     LayoutComponent,
     HeaderComponent,
     CenterComponent,
-    AppNavbarComponent,
     EmailValidatorDirective
   ],
   imports: [
