@@ -4,7 +4,7 @@ export class URLMapper {
 
     constructor() {
         this.serviceURL = new TestURL();
-        //this.serviceURL = new RestEndPointURL();
+        // this.serviceURL = new RestEndPointURL();
     }
 
     public static getURL(): ServiceURL {
@@ -31,13 +31,13 @@ export class TestURL implements ServiceURL {
   public storyListURL() {
     console.log('------------------' + location.origin + '--------------------');
     return 'https://firebasestorage.googleapis.com/v0/b/readadda-5d474.appspot.com/o/' +
-      'stories%2FstoryList.json?alt=media&token=3f0eaab9-3550-43ef-a681-e653149a7256';
+      'stories%2FstoryList.json?alt=media&token=9d41b6df-ba5d-49a5-ac6f-2478eddfd53d';
   }
 
   public storyURL(storyId) {
     console.log('------------------Return Story URL : ' + storyId + '--------------------');
     return 'https://firebasestorage.googleapis.com/v0/b/readadda-5d474.appspot.com/o/' +
-      'stories%2Fstory.json?alt=media&token=61ffb84d-da99-4a69-8fa0-4261aec2d511';
+      'stories%2Fstory.json?alt=media&token=55632eef-d813-4e81-a864-411d1809db3d';
   }
 }
 
