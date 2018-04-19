@@ -4,6 +4,9 @@ import { NgClass} from '@angular/common';
 import { AuthenticationService } from '../security/authentication.service';
 import { Authentication } from '../security/authentication';
 
+/**
+ * Header component
+ */
 @Component({
   selector: 'ra-header',
   templateUrl: 'header.component.html'
@@ -16,10 +19,16 @@ export class HeaderComponent implements OnInit {
   error = false;
   token: any;
   isCollapsed = false;
+  /**
+   * Header component constructor
+   */
   constructor(public authentication: Authentication, private _authenticationService: AuthenticationService,
 
   private router: Router) {}
 
+  /**
+   * Header component: init method
+   */
   ngOnInit() {
       console.info('Loading Header');
       console.info('logged in = ' + this.authentication.isLoggedIn);

@@ -7,27 +7,22 @@ import {AppComponent} from './app.component';
 
 const MainRoutes: Routes = [
   {
-    path: 'app',
-    component: AppComponent,
-    data: { title: 'App' }
-  },
-  {
     path: '',
     redirectTo: '/readBoard',
     pathMatch: 'full'
   },
   {
-      path: 'readBoard',
-      loadChildren: 'app/readboard/readboard.module#ReadBoardModule'
+    path: 'readBoard',
+    loadChildren: 'app/readboard/readboard.module#ReadBoardModule'
   },
   {
-      path: 'writeboard',
-      loadChildren: 'app/writeboard/writeboard.module#WriteBoardModule',
+    path: 'writeboard',
+    loadChildren: 'app/writeboard/writeboard.module#WriteBoardModule',
     canActivate: [AuthGuard]
   },
   {
-      path: 'authentication',
-      loadChildren: 'app/security/authentication.module#AuthenticationModule',
+    path: 'authentication',
+    loadChildren: 'app/security/authentication.module#AuthenticationModule',
   }
 ];
 

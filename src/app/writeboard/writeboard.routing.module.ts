@@ -18,4 +18,4 @@ const WriteBoardRoutes: Routes = [
       RouterModule
     ]
   })
-export class ReadBoardRoutingModule { }
+export class WriteBoardRoutingModule { }

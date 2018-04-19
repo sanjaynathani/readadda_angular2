@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {WriteBoardComponent} from './writeboard.component';
 import {CommonModule} from '@angular/common';
-import {ReadBoardRoutingModule} from './writeboard.routing.module';
+import {WriteBoardRoutingModule} from './writeboard.routing.module';
 import {FormsModule} from '@angular/forms';
 import { QuillEditorModule } from 'ngx-quill-editor';
 
@@ -11,7 +11,7 @@ import { QuillEditorModule } from 'ngx-quill-editor';
   ],
   imports: [
     CommonModule,
-    ReadBoardRoutingModule,
+    WriteBoardRoutingModule,
     QuillEditorModule,
     FormsModule
   ],
