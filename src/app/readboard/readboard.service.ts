@@ -1,26 +1,25 @@
 import {Story} from '../entity/story';
 import {Injectable} from '@angular/core';
-import {Http, RequestOptionsArgs, Response, RequestOptions, Headers} from '@angular/http';
-import {Observable} from 'rxjs/Observable';
+import {HttpClient} from '@angular/common/http';
 import {URLMapper} from '../ServiceURLConfig';
-
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/of';
+import {Observable} from 'rxjs/Observable';
 @Injectable()
 export class ReadBoardService {
-  constructor(private http: Http) {
+  constructor(private http: HttpClient) {
   }
 
   private _storyListUrl = URLMapper.getURL().storyListURL();
-  private args: RequestOptionsArgs;
 
   getStories() {
     console.log(this._storyListUrl);
     const httpHeader = new Headers();
-    const options = new RequestOptions({
-      headers: httpHeader
-    });
 
-    return this.http.get(this._storyListUrl)
-      .map(res => <Story[]>res.json().stories)
+    return this.http.get<any>(this._storyListUrl)
+      .map(data => data.stories)
       .do(data => console.log(data))
       .catch(this.handleError);
   }
@@ -29,7 +28,7 @@ export class ReadBoardService {
     // in a real world app, we may send the error to some remote logging infrastructure
     // instead of just logging it to the console
     console.error(error);
-    return Observable.throw(error.json().error || 'Server error');
+    return Observable.throw(error || 'Server error');
   }
 
   private getAppPath() {
@@ -44,8 +43,8 @@ export class ReadBoardService {
 
   getStory(storyID: String) {
     const storyUrl = URLMapper.getURL().storyURL(storyID);
-    return this.http.get(storyUrl)
-      .map(res => <Story>res.json().story)
+    return this.http.get<any>(storyUrl)
+      .map(data => data.story)
       .do(data => console.log(data))
       .catch(this.handleStoryDetailError);
   }
@@ -54,6 +53,6 @@ export class ReadBoardService {
     // in a real world app, we may send the error to some remote logging infrastructure
     // instead of just logging it to the console
     console.error(error);
-    return Observable.throw(error.json().error || 'Server error');
+    return Observable.throw(error || 'Server error');
   }
 }

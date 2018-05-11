@@ -1,8 +1,12 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {Authentication} from './authentication';
-import {Http, Response} from '@angular/http';
+import {HttpClient} from '@angular/common/http';
 import {URLMapper} from '../ServiceURLConfig';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/of';
 
 let loggedIn: boolean;
 
@@ -10,9 +14,8 @@ let loggedIn: boolean;
 export class AuthenticationService {
   token: string;
   private loginDataUrl = URLMapper.getURL().loginURL();
-    //location.origin + '/libs/data/loginData.json';
 
-  constructor(private authentication: Authentication, private http: Http) {
+  constructor(private authentication: Authentication, private http: HttpClient) {
     console.log('Authentication Service constructor');
     this.token = localStorage.getItem('token');
     this.isLoggedIn();
@@ -20,26 +23,14 @@ export class AuthenticationService {
   }
 
   login(username: string, password: string)  {
+    console.log(this.loginDataUrl);
     return this.http.get(this.loginDataUrl)
-            .map(res => this.handleLogin(res, username, password))
-            .do(data => console.log(data))
-            .catch(this.handleError);
+      .map(res => this.handleLogin(res, username, password))
+      .do(token => console.log(token))
+      .catch(this.handleError);
   }
 
   logout() {
-    /*
-     * If we had a login api, we would have done something like this
-
-    return this.http.get(this.config.serverUrl + '/auth/logout', {
-      headers: new Headers({
-        'x-security-token': this.token
-      })
-    })
-    .map((res : any) => {
-      this.token = undefined;
-      localStorage.removeItem('token');
-    });
-     */
 
     this.token = undefined;
     localStorage.removeItem('token');
@@ -56,11 +47,10 @@ export class AuthenticationService {
     this.authentication.username = localStorage.getItem('username');
     this.authentication.isLoggedIn = !!localStorage.getItem('token');
     loggedIn = !!localStorage.getItem('token');
-    //return !!localStorage.getItem('token');
   }
 
-  private handleLogin(res: Response, username: string, password: string) {
-    const auth = <Authentication>res.json().loginData;
+  private handleLogin(data: any, username: string, password: string): String {
+    const auth = data.loginData;
     console.log('Passed parameter :' + username + ' ' + password);
     console.log('Auth parameter :' + auth.username + ' ' + auth.password);
     if (auth.username === username && auth.password === password) {
@@ -81,12 +71,12 @@ export class AuthenticationService {
     }
   }
 
-  private handleError(res: Response) {
-    return Observable.throw('authentication failure');
+  private handleError(result: Response) {
+    return Observable.throw('authentication failure' + result);
   }
 }
 
 export function isLoggedIn() {
-    console.log('----' + loggedIn + '----');
-    return loggedIn;
+  console.log('----' + loggedIn + '----');
+  return loggedIn;
 }
