@@ -37,7 +37,7 @@ export class AuthenticationComponent implements OnInit {
 
   private createForm() {
     this.loginForm = new FormGroup({
-      'username': new FormControl(this.authentication.username, [Validators.required, emailValidator(regexPattern.email)]),
+      'username': new FormControl(this.authentication.username, [Validators.required, Validators.email]),
       'password': new FormControl(this.authentication.password, Validators.required)
     });
   }
@@ -77,5 +77,17 @@ export class AuthenticationComponent implements OnInit {
 
   get password() {
     return this.loginForm.get('password');
+  }
+
+  getEmailError() {
+    return this.username.hasError('required') ? 'Value required' :
+      this.username.hasError('email') ? 'Not a valid email' :
+        '';
+  }
+
+  getPasswordError() {
+    return this.password.hasError('required') ? 'Value required' :
+      this.password.hasError('email') ? 'Not a valid password' :
+        '';
   }
 }

@@ -1,4 +1,6 @@
 import { NgModule } from '@angular/core';
+import {CdkTableModule} from '@angular/cdk/table';
+import { MatButtonModule, MatFormFieldModule, MatInputModule } from '@angular/material';
 import { AuthenticationComponent } from './authentication.component';
 import { AuthenticationService } from './authentication.service';
 import { Authentication } from './authentication';
@@ -16,7 +18,10 @@ import { AuthenticationRoutingModule } from './authentication.routing.module';
     FormsModule,
     ReactiveFormsModule,
     AuthenticationRoutingModule,
-
+    CdkTableModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: []
 })
