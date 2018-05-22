@@ -7,7 +7,7 @@
   border-bottom: ridge;
   border-bottom-width: 2px;
   position: fixed;
-  top: 50px;
+  top: 65px;
   z-index: 1;
   width: 80%;
   padding-top: 10px;
@@ -20,4 +20,16 @@
 
 .form-field-container > * {
   width: 100%;
+}
+
+.example-fill-remaining-space {
+  /* This fills the remaining space, by using flexbox.
+     Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
+}
+
+
+.fixed{
+  position: fixed;
+  z-index: 1;
 }

@@ -18,8 +18,9 @@ import { AuthGuard } from './security/authGuard';
 import { LayoutComponent } from './layout/layout.component';
 import { HeaderComponent } from './layout/header.component';
 import { CenterComponent } from './layout/center.component';
-import {EmailValidatorDirective} from './validator/emailValidator';
+import { EmailValidatorDirective } from './validator/emailValidator';
 import { QuillEditorModule } from 'ngx-quill-editor';
+import { MatToolbarModule, MatMenuModule } from '@angular/material';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyBQ21jEZecwO82_OWgobWlFKIJczcEwnbE',
@@ -50,6 +51,8 @@ export const firebaseConfig = {
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     QuillEditorModule,
+    MatToolbarModule,
+    MatMenuModule
   ],
   providers: [AuthGuard, Authentication, AuthenticationService],
   bootstrap: [AppComponent]
