@@ -10,7 +10,7 @@ import {ReadBoardService} from './readboard.service';
   providers: [ReadBoardService]
 })
 export class StoryBoardComponent implements OnInit {
-  storyId: string;
+  storyId: number;
   story: Story;
   errorMessage: string;
 

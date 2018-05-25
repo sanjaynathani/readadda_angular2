@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthenticationService} from '../security/authentication.service';
 import {Authentication} from '../security/authentication';
-import {FormGroup, FormControl, Validators} from '@angular/forms';
+import {FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
 import {Router} from '@angular/router';
 import {emailValidator} from '../validator/emailValidator';
 import {regexPattern} from '../validator/regexPattern';
@@ -23,7 +23,7 @@ export class AuthenticationComponent implements OnInit {
   loginForm: FormGroup;
 
   constructor(public afAuth: AngularFireAuth, public af: AngularFireDatabase, public authentication: Authentication,
-              private _authenticationService: AuthenticationService, private router: Router) {
+              private _authenticationService: AuthenticationService, private router: Router, private  formBuilder: FormBuilder) {
     console.info('Auth Comp Constructor');
     this.authentication = authentication;
   }
@@ -36,10 +36,15 @@ export class AuthenticationComponent implements OnInit {
   }
 
   private createForm() {
-    this.loginForm = new FormGroup({
+    this.loginForm = this.formBuilder.group(
+      {
+        'username': [this.authentication.username, Validators.compose([Validators.email])],
+        'password': [this.authentication.password, Validators.compose([Validators.minLength(4)])]
+      });
+    /*this.loginForm = new FormGroup({
       'username': new FormControl(this.authentication.username, [Validators.required, Validators.email]),
       'password': new FormControl(this.authentication.password, Validators.required)
-    });
+    });*/
   }
 
   onLogin() {
@@ -87,7 +92,7 @@ export class AuthenticationComponent implements OnInit {
 
   getPasswordError() {
     return this.password.hasError('required') ? 'Value required' :
-      this.password.hasError('email') ? 'Not a valid password' :
+      this.password.hasError('minlength') ? 'Minimum lenght is 4' :
         '';
   }
 }

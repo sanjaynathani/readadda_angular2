@@ -24,20 +24,17 @@ export interface ServiceURL {
 export class TestURL implements ServiceURL {
   public loginURL() {
     console.log('------------------' + location.origin + '--------------------');
-    return 'https://firebasestorage.googleapis.com/v0/b/readadda-5d474.appspot.com/o/' +
-      'stories%2FloginData.json?alt=media&token=e27cfb8e-1b9b-4880-a7ed-8d409386cf50';
+    return 'http://taleaddaapi.herokuapp.com/taleadda/authenticate';
   }
 
   public storyListURL() {
     console.log('------------------' + location.origin + '--------------------');
-    return 'https://firebasestorage.googleapis.com/v0/b/readadda-5d474.appspot.com/o/' +
-      'stories%2FstoryList.json?alt=media&token=9d41b6df-ba5d-49a5-ac6f-2478eddfd53d';
+    return 'https://taleaddaapi.herokuapp.com/taleadda/stories';
   }
 
   public storyURL(storyId) {
     console.log('------------------Return Story URL : ' + storyId + '--------------------');
-    return 'https://firebasestorage.googleapis.com/v0/b/readadda-5d474.appspot.com/o/' +
-      'stories%2Fstory.json?alt=media&token=55632eef-d813-4e81-a864-411d1809db3d';
+    return 'https://taleaddaapi.herokuapp.com/taleadda/story/' + storyId;
   }
 }
 

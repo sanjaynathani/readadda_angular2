@@ -24,7 +24,9 @@ export class AuthenticationService {
 
   login(username: string, password: string)  {
     console.log(this.loginDataUrl);
-    return this.http.get(this.loginDataUrl)
+    this.authentication.username = username;
+    this.authentication.password = password;
+    return this.http.post(this.loginDataUrl, this.authentication)
       .map(res => this.handleLogin(res, username, password))
       .do(token => console.log(token))
       .catch(this.handleError);
@@ -50,7 +52,7 @@ export class AuthenticationService {
   }
 
   private handleLogin(data: any, username: string, password: string): String {
-    const auth = data.loginData;
+    const auth = data
     console.log('Passed parameter :' + username + ' ' + password);
     console.log('Auth parameter :' + auth.username + ' ' + auth.password);
     if (auth.username === username && auth.password === password) {

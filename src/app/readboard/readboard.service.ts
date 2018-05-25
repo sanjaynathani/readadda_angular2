@@ -19,7 +19,6 @@ export class ReadBoardService {
     const httpHeader = new Headers();
 
     return this.http.get<any>(this._storyListUrl)
-      .map(data => data.stories)
       .do(data => console.log(data))
       .catch(this.handleError);
   }
@@ -41,10 +40,9 @@ export class ReadBoardService {
     return appPath;
   }
 
-  getStory(storyID: String) {
+  getStory(storyID: number) {
     const storyUrl = URLMapper.getURL().storyURL(storyID);
     return this.http.get<any>(storyUrl)
-      .map(data => data.story)
       .do(data => console.log(data))
       .catch(this.handleStoryDetailError);
   }
