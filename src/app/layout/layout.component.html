@@ -1,3 +1,50 @@
-<p>
-  layout works!
-</p>
+<mat-sidenav-container>
+  <mat-sidenav #sidenav role="navigation" color="primary">
+    <mat-nav-list >
+      <a mat-list-item routerLink="/readBoard" [class.active]="isSelected('/readboard')"><mat-icon class="icon">my_library_books</mat-icon><span class="label">ReadBoard</span></a>
+      <a mat-list-item routerLink="/writeboard" [class.active]="isSelected('/writeboard')"><mat-icon class="icon">keyboard</mat-icon><span class="label">WriteBoard</span></a>
+      <a *ngIf="!authentication.isLoggedIn" class="nav-link text-dark" routerLink="/authentication" style="align-content: center">Login</a>
+      <a *ngIf="authentication.isLoggedIn" class="nav-link text-dark" (click)="logout()" style="align-content: center">Logout</a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="primary" class="fixed-top">
+      <div fxHide.gt-xs>
+        <button mat-icon-button (click)="sidenav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+
+      <a routerLink="/readBoard" class="navbar-brand text-lg-left font-weight-bold">ReadAdda</a>
+
+      <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
+        <ul fxLayout fxLayoutGap="20px" class="navigation-items">
+          <li>
+            <a routerLink="/readBoard" [class.active]="isSelected('/readboard')" class="nav-link text-light" style="margin-top: 10px; font-size: medium">
+              <mat-icon class="icon">my_library_books</mat-icon>ReadBoard
+            </a>
+          </li>
+          <li>
+            <a routerLink="/writeboard" [class.active]="isSelected('/writeboard')" class="nav-link text-light" style="margin-top: 10px; font-size: medium">
+              <mat-icon class="icon">keyboard</mat-icon>WriteBoard
+            </a>
+          </li>
+        </ul>
+        <span class="example-fill-remaining-space"></span>
+        <div style="margin-top: 10px; margin-right: 35px; font-size: large">
+        <a *ngIf="!authentication.isLoggedIn" class="nav-link text-light" routerLink="/authentication">Login</a>
+        <a *ngIf="authentication.isLoggedIn" class="nav-link text-light" (click)="logout()">Logout</a>
+        </div>
+      </div>
+    </mat-toolbar>
+    <div style="padding-top: 70px; margin-left: 10%; margin-right: 10%; height: 100%;">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
+
+
+
+

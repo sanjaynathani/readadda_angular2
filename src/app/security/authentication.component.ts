@@ -5,8 +5,6 @@ import {FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
 import {Router} from '@angular/router';
 import {emailValidator} from '../validator/emailValidator';
 import {regexPattern} from '../validator/regexPattern';
-import {AngularFireDatabase} from 'angularfire2/database';
-import {AngularFireAuth} from 'angularfire2/auth';
 
 @Component({
   selector: 'authentication',
@@ -22,7 +20,7 @@ export class AuthenticationComponent implements OnInit {
   login = true;
   loginForm: FormGroup;
 
-  constructor(public afAuth: AngularFireAuth, public af: AngularFireDatabase, public authentication: Authentication,
+  constructor(public authentication: Authentication,
               private _authenticationService: AuthenticationService, private router: Router, private  formBuilder: FormBuilder) {
     console.info('Auth Comp Constructor');
     this.authentication = authentication;
