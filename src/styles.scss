@@ -13,7 +13,7 @@ body {
   position: fixed;
   top: 65px;
   z-index: 1;
-  width: 80%;
+  width: 79%;
   padding-top: 10px;
 }
 
@@ -47,13 +47,13 @@ mat-sidenav {
   width: 250px;
 }
 
-a {
+.menu-link {
   text-decoration: none;
   color: white;
 }
 
-a:hover,
-a:active {
+.menu-link:hover,
+.menu-link:active {
   color: lightgray;
 }
 
