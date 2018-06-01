@@ -11,9 +11,8 @@ body {
   border-bottom: ridge;
   border-bottom-width: 2px;
   position: fixed;
-  top: 65px;
   z-index: 1;
-  width: 79%;
+  width: 80%;
   padding-top: 10px;
 }
 
@@ -39,11 +38,11 @@ body {
 }
 
 
-mat-sidenav-container, mat-sidenav-content, mat-sidenav {
+mat-drawer-container, mat-drawer-content, mat-drawer {
   height: 100%;
 }
 
-mat-sidenav {
+mat-drawer {
   width: 250px;
 }
 

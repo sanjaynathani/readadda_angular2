@@ -15,7 +15,7 @@ import { AuthGuard } from './security/authGuard';
 import { LayoutComponent } from './layout/layout.component';
 import { EmailValidatorDirective } from './validator/emailValidator';
 import { QuillEditorModule } from 'ngx-quill-editor';
-import {MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule, MatListModule} from '@angular/material';
+import {MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule, MatListModule, MatProgressBarModule} from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
@@ -38,7 +38,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatMenuModule,
     MatIconModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    MatProgressBarModule
   ],
   exports: [
     MatSidenavModule,

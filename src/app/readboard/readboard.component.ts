@@ -13,19 +13,24 @@ export class ReadBoardComponent implements OnInit {
   stories: Story[] = new Array();
   selectedStory: Story;
   errorMessage: string;
-  showAdvanceSearch = false;
+  showProgressBar = false;
   constructor(private _readboardService: ReadBoardService, private router: Router, private route: ActivatedRoute) { }
   ngOnInit() {
       console.info('Loading ReadBoard');
       this.getStories();
   }
-  toggleAdvanceSearch() {
-      this.showAdvanceSearch = ! this.showAdvanceSearch;
+
+  isProgressing() {
+      return this.showProgressBar;
   }
+
   getStories() {
       console.info('Loading getStories');
     console.info('stories' + this.stories);
-      this._readboardService.getStories().subscribe(
+    this.showProgressBar = true;
+      this._readboardService.getStories()
+        .do(s => this.showProgressBar = false)
+        .subscribe(
           stories => this.stories = this.stories.concat(stories),
           error =>  this.errorMessage = <any>error);
   }

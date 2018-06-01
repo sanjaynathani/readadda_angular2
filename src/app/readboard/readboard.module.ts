@@ -4,6 +4,7 @@ import { ReadBoardService } from './readboard.service';
 import { CommonModule } from '@angular/common';
 import { ReadBoardRoutingModule } from './readboard.routing.module';
 import { StoryBoardComponent } from './storyboard.component';
+import {MatCardModule, MatDividerModule, MatFormFieldModule, MatProgressBarModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,11 @@ import { StoryBoardComponent } from './storyboard.component';
   ],
   imports: [
     CommonModule,
-    ReadBoardRoutingModule
+    ReadBoardRoutingModule,
+    MatFormFieldModule,
+    MatProgressBarModule,
+    MatCardModule,
+    MatDividerModule
   ],
   providers: [ReadBoardService]
 })
