@@ -1,4 +1,5 @@
-export interface Story {
+
+export class Story {
   storyId: number;
   title: string;
   storyShortDescription: string;
@@ -8,4 +9,27 @@ export interface Story {
   likes: number;
   disLikes: number;
   content: string;
+  searchTags: string;
+  createdBy: string;
+  createdOn: string;
+  currentStatus: PublishStatus;
+  deniedReason: string;
+  statusHistory: StatusHistory[];
+
+  public constructor(init?: Partial<Story>) {
+    Object.assign(this, init);
+  }
+}
+
+class StatusHistory {
+  statusChangedTo: PublishStatus;
+  statusChangedFrom: PublishStatus;
+  changedOn: string;
+  changedBy: string;
+}
+
+enum PublishStatus {
+  PENDING,
+  DENIED,
+  APPROVED
 }

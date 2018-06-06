@@ -31,7 +31,7 @@
 
 
 
-<form *ngIf="register" id="signUpForm" (submit)="signUp(signUpForm)" let signUpForm="ngForm">
+<form *ngIf="register" id="signUpForm" (ngsubmit)="signUp(signUpForm)" let signUpForm="ngForm">
 
     <div class="modal-content" >
         <div class="modal-header" class="modal-header bg-light" >

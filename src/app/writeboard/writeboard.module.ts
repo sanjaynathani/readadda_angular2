@@ -2,8 +2,9 @@ import {NgModule} from '@angular/core';
 import {WriteBoardComponent} from './writeboard.component';
 import {CommonModule} from '@angular/common';
 import {WriteBoardRoutingModule} from './writeboard.routing.module';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { QuillEditorModule } from 'ngx-quill-editor';
+import {MatInputModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,9 @@ import { QuillEditorModule } from 'ngx-quill-editor';
     CommonModule,
     WriteBoardRoutingModule,
     QuillEditorModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    MatInputModule,
   ],
   providers: []
 })

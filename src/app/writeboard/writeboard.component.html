@@ -1,25 +1,20 @@
-<div style="width: 100%;" >
-    <form id="writeStoryForm">
+<div style="width: 100%; height: 100%;">
+    <form id="writeStoryForm" (ngSubmit)="onPublish(writeStoryForm)" [formGroup]="writeStoryForm" #formDir="ngForm" style="height: 100%;">
         <h3><strong>Write your story</strong></h3>
-        <div class="form-group">
-            <label for="topicTitle">Title:</label>
-            <input type="text" class="form-control" id="topicTitle" required/>
-        </div>
-
-        <!--<div id="editor"></div>-->
+          <mat-form-field style="width: 100%">
+            <input placeholder="Title" matInput id="topicTitle" formControlName="title" required />
+          </mat-form-field>
 
 
-      <quill-editor [(ngModel)]="ckeditorContent"
-                    [options]="editorOptions"
+        <quill-editor [options]="editorOptions"
                     (blur)="onEditorBlured($event)"
                     (focus)="onEditorFocused($event)"
                     (ready)="onEditorCreated($event)"
-                    (change)="onContentChanged($event)" name="storyEditor"></quill-editor>
+                    (change)="onContentChanged($event)" name="storyEditor" formControlName="content" style="text-align: center;"></quill-editor>
 
-        <div class="form-group">
-            <label for="topicSearchTags">Search Tags:</label>
-            <textarea class="form-control" id="topicSearchTags" required></textarea>
-        </div>
+          <mat-form-field style="width: 100%">
+            <input placeholder="Search Tags" matInput id="topicSearchTags" formControlName="searchTags" />
+          </mat-form-field>
 
         <button type="submit" class="btn btn-primary" style="float: right;">Publish</button>
     </form>

@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CanActivate } from '@angular/router';
-import { isLoggedIn } from '../security/authentication.service';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import {emailValidator} from '../validator/emailValidator';
-import {regexPattern} from '../validator/regexPattern';
+import {FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
+import {Story} from '../entity/story';
 
 @Component({
   selector: 'writeboard',
@@ -12,16 +9,24 @@ import {regexPattern} from '../validator/regexPattern';
 
 
 export class WriteBoardComponent implements OnInit {
-  ckeditorContent = '<p>Some html</p>';
+  story: Story;
   writeStoryForm: FormGroup;
 
   public editor;
   public editorContent = `<h3>I am Example content</h3>`;
   public editorOptions = {
-    placeholder: 'insert content...'
+    placeholder: 'Start writing...',
+    modules: {
+      toolbar: [
+        ['bold', 'italic', 'underline', 'strike'],
+        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+        [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+        [{ 'indent': '-1'}, { 'indent': '+1' }]
+      ],
+    }
   };
 
-  constructor() {}
+  constructor(private  formBuilder: FormBuilder) {}
 
   ngOnInit() {
       console.info('Loading WriteBoard');
@@ -29,9 +34,12 @@ export class WriteBoardComponent implements OnInit {
   }
 
   private createForm() {
-    this.writeStoryForm = new FormGroup({
-      'ckeditorContent': new FormControl(this.ckeditorContent),
-    });
+     this.writeStoryForm = this.formBuilder.group(
+      {
+        content: [''],
+        title: [''],
+        searchTags: ['']
+      });
   }
 
   onEditorBlured(quill) {
@@ -49,5 +57,22 @@ export class WriteBoardComponent implements OnInit {
 
   onContentChanged({ quill, html, text }) {
     console.log('quill content is changed!', quill, html, text);
+  }
+
+  onPublish() {
+    this.story = new Story(this.writeStoryForm.value);
+    console.log('Content = ', this.story.content);
+  }
+
+  get content() {
+    return this.writeStoryForm.get('content');
+  }
+
+  get title() {
+    return this.writeStoryForm.get('title');
+  }
+
+  get searchTags() {
+    return this.writeStoryForm.get('searchTags');
   }
 }
