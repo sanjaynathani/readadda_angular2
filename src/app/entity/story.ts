@@ -3,7 +3,6 @@ export class Story {
   storyId: number;
   title: string;
   storyShortDescription: string;
-  createdDate: string;
   modifiedDate: string;
   authorName: string;
   likes: number;
@@ -11,7 +10,7 @@ export class Story {
   content: string;
   searchTags: string;
   createdBy: string;
-  createdOn: string;
+  createdDate: string;
   currentStatus: PublishStatus;
   deniedReason: string;
   statusHistory: StatusHistory[];

@@ -21,7 +21,8 @@ export class WriteBoardComponent implements OnInit {
         ['bold', 'italic', 'underline', 'strike'],
         [{ 'list': 'ordered'}, { 'list': 'bullet' }],
         [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
-        [{ 'indent': '-1'}, { 'indent': '+1' }]
+        [{ 'indent': '-1'}, { 'indent': '+1' }],
+        ['link']
       ],
     }
   };

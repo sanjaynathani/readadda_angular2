@@ -19,22 +19,24 @@ export interface ServiceURL {
     loginURL();
     storyListURL();
     storyURL(storyId);
+    submitStoryURL();
 }
 
 export class TestURL implements ServiceURL {
   public loginURL() {
-    console.log('------------------' + location.origin + '--------------------');
     return 'http://taleaddaapi.herokuapp.com/taleadda/authenticate';
   }
 
   public storyListURL() {
-    console.log('------------------' + location.origin + '--------------------');
     return 'https://taleaddaapi.herokuapp.com/taleadda/stories';
   }
 
   public storyURL(storyId) {
-    console.log('------------------Return Story URL : ' + storyId + '--------------------');
     return 'https://taleaddaapi.herokuapp.com/taleadda/story/' + storyId;
+  }
+
+  public submitStoryURL() {
+    return 'https://taleaddaapi.herokuapp.com/taleadda/story/submit';
   }
 }
 
@@ -42,5 +44,6 @@ export class RestEndPointURL implements ServiceURL {
     public loginURL() {  } // Not Implemented!
     public storyListURL() {  } // Not Implemented!
     public storyURL(storyId) {  } // Not Implemented!
+    public submitStoryURL() {  } // Not Implemented!
 }
 

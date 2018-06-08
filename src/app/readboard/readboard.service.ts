@@ -20,7 +20,6 @@ export class ReadBoardService {
 
     return this.http.get<any>(this._storyListUrl)
       .do(data => console.log(data))
-      //.delay(5000)
       .catch(this.handleError);
   }
 
