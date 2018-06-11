@@ -43,8 +43,12 @@ export class ReadBoardComponent implements OnInit {
         this.getStories();
     }
   }
-  openStory(storyId) {
-      this.router.navigate(['story', {storyId: storyId}], {relativeTo: this.route});
+  openStory(id) {
+      this.router.navigate(['story', {id: id}], {relativeTo: this.route});
 
+  }
+
+  getDateTime() {
+    return new Date().toJSON();
   }
 }

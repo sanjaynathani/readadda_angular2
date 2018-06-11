@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
 import {Story} from '../entity/story';
+import {AuthenticationService} from '../security/authentication.service';
+import {WriteboardService} from './writeboard.service';
 
 @Component({
   selector: 'writeboard',
@@ -26,8 +28,9 @@ export class WriteBoardComponent implements OnInit {
       ],
     }
   };
+  private storyShortDescription = '';
 
-  constructor(private  formBuilder: FormBuilder) {}
+  constructor(private  formBuilder: FormBuilder, private _writeboardService: WriteboardService) {}
 
   ngOnInit() {
       console.info('Loading WriteBoard');
@@ -58,22 +61,29 @@ export class WriteBoardComponent implements OnInit {
 
   onContentChanged({ quill, html, text }) {
     console.log('quill content is changed!', quill, html, text);
+    console.log('Before ->', this.storyShortDescription)
+    if (this.storyShortDescription === '') {
+      this.storyShortDescription = text.length > 100 ? text.substr(0, 100 ) : text;
+    }
+
+    if (this.storyShortDescription.length < 100) {
+      this.storyShortDescription = this.story.storyShortDescription + text;
+    }
+    console.log('After ->', this.storyShortDescription);
   }
 
   onPublish() {
     this.story = new Story(this.writeStoryForm.value);
+    this.story.storyShortDescription = this.storyShortDescription;
     console.log('Content = ', this.story.content);
+    this._writeboardService.submitStory(this.story).subscribe(
+      story => {
+        if (story == null)  {
+          console.log('Error submiting story!');
+        } else {
+          console.log('Story submitted Succesfully! Story Id=', story.id);
+        }
+      });
   }
 
-  get content() {
-    return this.writeStoryForm.get('content');
-  }
-
-  get title() {
-    return this.writeStoryForm.get('title');
-  }
-
-  get searchTags() {
-    return this.writeStoryForm.get('searchTags');
-  }
 }

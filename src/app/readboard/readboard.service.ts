@@ -40,8 +40,8 @@ export class ReadBoardService {
     return appPath;
   }
 
-  getStory(storyID: number) {
-    const storyUrl = URLMapper.getURL().storyURL(storyID);
+  getStory(id: string) {
+    const storyUrl = URLMapper.getURL().storyURL(id);
     return this.http.get<any>(storyUrl)
       .do(data => console.log(data))
       .catch(this.handleStoryDetailError);

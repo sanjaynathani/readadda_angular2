@@ -1,6 +1,6 @@
 
 export class Story {
-  storyId: number;
+  id: string;
   title: string;
   storyShortDescription: string;
   modifiedDate: string;
@@ -20,14 +20,14 @@ export class Story {
   }
 }
 
-class StatusHistory {
+export class StatusHistory {
   statusChangedTo: PublishStatus;
   statusChangedFrom: PublishStatus;
   changedOn: string;
   changedBy: string;
 }
 
-enum PublishStatus {
+export enum PublishStatus {
   PENDING,
   DENIED,
   APPROVED

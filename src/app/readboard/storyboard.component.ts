@@ -10,13 +10,13 @@ import {ReadBoardService} from './readboard.service';
   providers: [ReadBoardService]
 })
 export class StoryBoardComponent implements OnInit {
-  storyId: number;
+  id: string;
   story: Story;
   errorMessage: string;
 
   constructor(private activatedRoute: ActivatedRoute, private _readBoardService: ReadBoardService, private router: Router) {
     console.log('Query Params === ' + JSON.stringify(activatedRoute.snapshot.params));
-    this.storyId = activatedRoute.snapshot.params['storyId'];
+    this.id = activatedRoute.snapshot.params['id'];
   }
 
   ngOnInit() {
@@ -25,9 +25,13 @@ export class StoryBoardComponent implements OnInit {
   }
 
   getStory() {
-    console.info('Loading getStory ' + this.storyId);
-    this._readBoardService.getStory(this.storyId).subscribe(
+    console.info('Loading getStory ' + this.id);
+    this._readBoardService.getStory(this.id).subscribe(
       story => this.story = story,
       error => this.errorMessage = <any>error);
+  }
+
+  getLocaleDate() {
+    return new Date(this.story.createdDate).toLocaleString();
   }
 }
