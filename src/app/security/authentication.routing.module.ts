@@ -3,9 +3,9 @@ import { AuthenticationComponent } from './authentication.component';
 import { NgModule }  from '@angular/core';
 
 const AuthenticationRoutes: Routes = [
-    
+
     {
-        path: '',        
+        path: '',
         component: AuthenticationComponent,
     }
 ];

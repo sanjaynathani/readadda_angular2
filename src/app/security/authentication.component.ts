@@ -39,10 +39,6 @@ export class AuthenticationComponent implements OnInit {
         'username': [this.authentication.username, Validators.compose([Validators.email])],
         'password': [this.authentication.password, Validators.compose([Validators.minLength(4)])]
       });
-    /*this.loginForm = new FormGroup({
-      'username': new FormControl(this.authentication.username, [Validators.required, Validators.email]),
-      'password': new FormControl(this.authentication.password, Validators.required)
-    });*/
   }
 
   onLogin() {
@@ -59,7 +55,7 @@ export class AuthenticationComponent implements OnInit {
             this.error = false;
             console.info('No error === ' + token);
             console.info('Is LogedIn === ' + this.authentication.isLoggedIn);
-            this.router.navigate(['readBoard']);
+            this.router.navigate([this.authentication.redirectTo]);
           }
         });
   }

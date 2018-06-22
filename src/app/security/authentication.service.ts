@@ -52,7 +52,10 @@ export class AuthenticationService {
   }
 
   private handleLogin(data: any, username: string, password: string): String {
-    const auth = data
+    if (data === null) {
+      return '';
+    }
+    const auth = data;
     console.log('Passed parameter :' + username + ' ' + password);
     console.log('Auth parameter :' + auth.username + ' ' + auth.password);
     if (auth.username === username && auth.password === password) {

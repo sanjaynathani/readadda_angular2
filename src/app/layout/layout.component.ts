@@ -1,6 +1,6 @@
 import {Component, NgModule, OnInit} from '@angular/core';
 import {AuthenticationService} from '../security/authentication.service';
-import {Router} from '@angular/router';
+import {Router, RoutesRecognized} from '@angular/router';
 import {Authentication} from '../security/authentication';
 
 
@@ -43,6 +43,16 @@ export class LayoutComponent implements OnInit {
 
   toggleMenu() {
     this.isCollapsed = !this.isCollapsed;
+  }
+
+  onRouteChange() {
+       this.router.events
+      .filter(e => e instanceof RoutesRecognized)
+      .pairwise()
+      .subscribe((event: any[]) => {
+        console.log('Original URL = ', event[0].urlAfterRedirects);
+        this.authentication.redirectTo = event[0].urlAfterRedirects;
+      });
   }
 
 }

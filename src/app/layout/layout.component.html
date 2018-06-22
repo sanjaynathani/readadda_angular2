@@ -35,7 +35,7 @@
         <span class="example-fill-remaining-space"></span>
         <div style="margin-top: 10px; margin-right: 35px; font-size: large">
         <a *ngIf="!authentication.isLoggedIn" class="nav-link text-light" routerLink="/authentication">Login</a>
-        <a *ngIf="authentication.isLoggedIn" class="nav-link text-light" (click)="logout()">Logout</a>
+        <a *ngIf="authentication.isLoggedIn" class="nav-link text-light" (click)="logout()" style="cursor: pointer;">Logout</a>
         </div>
       </div>
 
@@ -43,7 +43,7 @@
     <div style="margin-top: 63px">
       <!--<div><mat-progress-bar mode="indeterminate" color="accent"></mat-progress-bar></div>-->
       <div style="display:inline-block; width: 10%"><router-outlet name="leftspace"></router-outlet></div>
-      <div style="display:inline-block; width: 80%"><router-outlet></router-outlet></div>
+      <div style="display:inline-block; width: 80%"><router-outlet (activate)="onRouteChange()"></router-outlet></div>
       <div style="display:inline-block; width: 10%"><router-outlet name="rightspace"></router-outlet></div>
     </div>
   </mat-drawer-content>
