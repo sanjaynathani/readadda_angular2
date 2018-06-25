@@ -24,7 +24,7 @@ export interface ServiceURL {
 
 export class TestURL implements ServiceURL {
   public loginURL() {
-    return 'http://taleaddaapi.herokuapp.com/taleadda/authenticate';
+    return 'https://taleaddaapi.herokuapp.com/taleadda/authenticate';
   }
 
   public storyListURL() {
