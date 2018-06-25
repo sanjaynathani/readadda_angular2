@@ -7,13 +7,12 @@ body {
 }
 
 .searchBox{
-  background-color: white;
-  border-bottom: ridge;
-  border-bottom-width: 2px;
   position: fixed;
   z-index: 1;
   width: 80%;
   padding-top: 10px;
+  overflow: hidden;
+  background: inherit;
 }
 
 .form-field-container {

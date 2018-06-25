@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { Story } from '../entity/story';
 import { ReadBoardService } from './readboard.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import { Observable } from 'rxjs/Observable';
+import {ReadlistType} from '../entity/readlist.type';
 
 @Component({
   selector: 'readboard',
@@ -10,13 +11,18 @@ import { Observable } from 'rxjs/Observable';
   providers: [ReadBoardService]
 })
 export class ReadBoardComponent implements OnInit {
+
+  @Input() type: ReadlistType;
+
+
   stories: Story[] = new Array();
   selectedStory: Story;
   errorMessage: string;
   showProgressBar = false;
   constructor(private _readboardService: ReadBoardService, private router: Router, private route: ActivatedRoute) { }
+
   ngOnInit() {
-      console.info('Loading ReadBoard');
+      console.info('Loading ReadBoard: ', this.type);
       this.getStories();
   }
 
@@ -25,10 +31,10 @@ export class ReadBoardComponent implements OnInit {
   }
 
   getStories() {
-      console.info('Loading getStories');
+    console.info('Loading getStories');
     console.info('stories' + this.stories);
     this.showProgressBar = true;
-      this._readboardService.getStories()
+      this._readboardService.getStories(this.type)
         .do(s => this.showProgressBar = false)
         .subscribe(
           stories => this.stories = this.stories.concat(stories),

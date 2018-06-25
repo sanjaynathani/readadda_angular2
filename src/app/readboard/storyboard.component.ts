@@ -1,18 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Story } from '../entity/story';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
-import {ReadBoardService} from './readboard.service';
+import { ReadBoardService } from './readboard.service';
+import { ISubscription } from 'rxjs-compat/Subscription';
 
 
 @Component({
   templateUrl: 'storyboard.component.html',
   providers: [ReadBoardService]
 })
-export class StoryBoardComponent implements OnInit {
+export class StoryBoardComponent implements OnInit, OnDestroy {
   id: string;
   story: Story;
   errorMessage: string;
+  private subscription: ISubscription;
 
   constructor(private activatedRoute: ActivatedRoute, private _readBoardService: ReadBoardService, private router: Router) {
     console.log('Query Params === ' + JSON.stringify(activatedRoute.snapshot.params));
@@ -26,12 +28,16 @@ export class StoryBoardComponent implements OnInit {
 
   getStory() {
     console.info('Loading getStory ' + this.id);
-    this._readBoardService.getStory(this.id).subscribe(
+    this.subscription = this._readBoardService.getStory(this.id).subscribe(
       story => this.story = story,
       error => this.errorMessage = <any>error);
   }
 
   getLocaleDate() {
     return new Date(this.story.createdDate).toLocaleString();
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

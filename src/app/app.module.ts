@@ -15,8 +15,18 @@ import { AuthGuard } from './security/authGuard';
 import { LayoutComponent } from './layout/layout.component';
 import { EmailValidatorDirective } from './validator/emailValidator';
 import { QuillEditorModule } from 'ngx-quill-editor';
-import {MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule, MatListModule, MatProgressBarModule} from '@angular/material';
+import {
+  MatToolbarModule,
+  MatMenuModule,
+  MatIconModule,
+  MatSidenavModule,
+  MatListModule,
+  MatProgressBarModule,
+  MatExpansionModule, MatFormFieldModule
+} from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import {ReadBoardModule} from './readboard/readboard.module';
+import {ReadBoardComponent} from './readboard/readboard.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +49,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatIconModule,
     MatSidenavModule,
     MatListModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatExpansionModule,
+    MatFormFieldModule
   ],
   exports: [
     MatSidenavModule,

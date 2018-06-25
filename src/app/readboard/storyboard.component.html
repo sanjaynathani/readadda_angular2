@@ -1,8 +1,7 @@
 <div>
-    <mat-card>
+    <mat-card *ngIf="story">
       <mat-card-title>{{story.title}}</mat-card-title>
-      <mat-card-content><div [innerHTML]="story?.content"></div></mat-card-content>
+      <mat-card-content><div [innerHTML]="story.content"></div></mat-card-content>
       <mat-card-footer>{{getLocaleDate()}}</mat-card-footer>
     </mat-card>
-
 </div>

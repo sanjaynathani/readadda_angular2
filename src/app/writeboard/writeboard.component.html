@@ -1,21 +1,31 @@
-<div style="width: 100%; height: 100%;">
-    <form id="writeStoryForm" (ngSubmit)="onPublish(writeStoryForm)" [formGroup]="writeStoryForm" #formDir="ngForm" style="height: 100%;">
-        <h3><strong>Write your story</strong></h3>
-          <mat-form-field style="width: 100%">
-            <input placeholder="Title" matInput id="topicTitle" formControlName="title" required />
-          </mat-form-field>
-
+<mat-tab-group>
+  <mat-tab label="Editor">
+    <form id="writeStoryForm" (ngSubmit)="onPublish(writeStoryForm)" [formGroup]="writeStoryForm" #formDir="ngForm">
+      <mat-card>
+        Write your story
+        <mat-form-field style="width: 100%">
+          <input placeholder="Title" matInput id="topicTitle" formControlName="title" required />
+        </mat-form-field>
 
         <quill-editor [options]="editorOptions"
-                    (blur)="onEditorBlured($event)"
-                    (focus)="onEditorFocused($event)"
-                    (ready)="onEditorCreated($event)"
-                    (change)="onContentChanged($event)" name="storyEditor" formControlName="content" style="text-align: center;"></quill-editor>
+                      (blur)="onEditorBlured($event)"
+                      (focus)="onEditorFocused($event)"
+                      (ready)="onEditorCreated($event)"
+                      (change)="onContentChanged($event)" name="storyEditor" formControlName="content" style="text-align: center;"></quill-editor>
 
-          <mat-form-field style="width: 100%">
-            <input placeholder="Search Tags" matInput id="topicSearchTags" formControlName="searchTags" />
-          </mat-form-field>
+        <mat-form-field style="width: 100%">
+          <input placeholder="Search Tags" matInput id="topicSearchTags" formControlName="searchTags" />
+        </mat-form-field>
 
-        <button type="submit" class="btn btn-primary" style="float: right;">Publish</button>
+        <button type="submit" class="btn btn-primary" >Publish</button>
+      </mat-card>
     </form>
-</div>
+
+  </mat-tab>
+  <mat-tab label="Writings">
+    <readboard></readboard>
+  </mat-tab>
+  <mat-tab label="Favourites">
+    <readboard type="PERSONAL"></readboard>
+  </mat-tab>
+</mat-tab-group>

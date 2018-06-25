@@ -6,7 +6,8 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/of';
-import {Observable} from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
+import { ReadlistType } from '../entity/readlist.type';
 @Injectable()
 export class ReadBoardService {
   constructor(private http: HttpClient) {
@@ -14,7 +15,7 @@ export class ReadBoardService {
 
   private _storyListUrl = URLMapper.getURL().storyListURL();
 
-  getStories() {
+  getStories(type: ReadlistType) {
     console.log(this._storyListUrl);
     const httpHeader = new Headers();
 

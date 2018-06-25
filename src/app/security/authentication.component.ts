@@ -55,7 +55,8 @@ export class AuthenticationComponent implements OnInit {
             this.error = false;
             console.info('No error === ' + token);
             console.info('Is LogedIn === ' + this.authentication.isLoggedIn);
-            this.router.navigate([this.authentication.redirectTo]);
+            console.info('Redirecting to === ' + this.authentication.redirectTo);
+            this.router.navigateByUrl(this.authentication.redirectTo);
           }
         });
   }

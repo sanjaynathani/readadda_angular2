@@ -1,9 +1,11 @@
 <div *ngIf="isProgressing()"><mat-progress-bar mode="indeterminate" color="grey"></mat-progress-bar></div>
-<div *ngIf="!isProgressing()" class="searchBox">
-  <input type="text" class="form-control" placeholder="Search for content">
+<div *ngIf="!isProgressing()" class="form-field-container searchBox">
+  <mat-form-field>
+    <input matInput placeholder="Search for content">
+  </mat-form-field>
 </div>
 
-<div id="readList" style="margin-top: 50px;">
+<div id="readList" style="margin-top: 60px;">
   <div style="margin-bottom: 5px;" class="card" *ngFor="let story of stories">
     <div class="card-header"  style="height: 35px; line-height:10px; background-color: steelblue">
       <span style="font-family: sans-serif; font-size: small; font-weight: bold; cursor: pointer;" (click)="openStory(story.id)">{{story.title}}</span>
@@ -16,3 +18,4 @@
     </div>
   </div>
 </div>
+
