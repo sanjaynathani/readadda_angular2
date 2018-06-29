@@ -1,5 +1,5 @@
 <div>
-    <mat-card *ngIf="story">
+    <mat-card *ngIf="story" class="mat-elevation-z7">
       <mat-card-title>{{story.title}}</mat-card-title>
       <mat-card-content><div [innerHTML]="story.content"></div></mat-card-content>
       <mat-card-footer>{{getLocaleDate()}}</mat-card-footer>

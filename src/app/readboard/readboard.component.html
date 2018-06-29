@@ -5,7 +5,7 @@
   </mat-form-field>
 </div>
 
-<div id="readList" style="margin-top: 60px;">
+<div id="readList" style="margin-top: 60px;" class="mat-elevation-z7">
   <div style="margin-bottom: 5px;" class="card" *ngFor="let story of stories">
     <div class="card-header"  style="height: 35px; line-height:10px; background-color: steelblue">
       <span style="font-family: sans-serif; font-size: small; font-weight: bold; cursor: pointer;" (click)="openStory(story.id)">{{story.title}}</span>

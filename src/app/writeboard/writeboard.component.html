@@ -1,4 +1,4 @@
-<mat-tab-group>
+<mat-tab-group (selectedTabChange)="tabSelectionChanged($event)">
   <mat-tab label="Editor">
     <form id="writeStoryForm" (ngSubmit)="onPublish(writeStoryForm)" [formGroup]="writeStoryForm" #formDir="ngForm">
       <mat-card>

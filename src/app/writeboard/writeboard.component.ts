@@ -86,4 +86,8 @@ export class WriteBoardComponent implements OnInit {
       });
   }
 
+  tabSelectionChanged(event) {
+    console.log('Tab selection change event = ', event.tab.textLabel);
+  }
+
 }
