@@ -4,6 +4,7 @@ import { ReadBoardService } from './readboard.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import {ReadlistType} from '../entity/readlist.type';
+import {CommonUtils} from '../util/common.utils';
 
 @Component({
   selector: 'readboard',
@@ -19,7 +20,7 @@ export class ReadBoardComponent implements OnInit {
   selectedStory: Story;
   errorMessage: string;
   showProgressBar = false;
-  constructor(private _readboardService: ReadBoardService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private _readboardService: ReadBoardService, private router: Router, private route: ActivatedRoute, private commonUtils: CommonUtils) {}
 
   ngOnInit() {
       console.info('Loading ReadBoard: ', this.type);
@@ -56,5 +57,9 @@ export class ReadBoardComponent implements OnInit {
 
   getDateTime() {
     return new Date().toJSON();
+  }
+
+  getLocalDate(selectedStory: Story) {
+    return this.commonUtils.getLocaleDate((selectedStory.modifiedDate == null || selectedStory.modifiedDate === '') ? selectedStory.createdDate : selectedStory.modifiedDate);
   }
 }

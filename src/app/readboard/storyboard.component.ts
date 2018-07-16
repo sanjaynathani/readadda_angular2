@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { ReadBoardService } from './readboard.service';
 import { ISubscription } from 'rxjs-compat/Subscription';
+import {CommonUtils} from '../util/common.utils';
 
 
 @Component({
@@ -16,7 +17,7 @@ export class StoryBoardComponent implements OnInit, OnDestroy {
   errorMessage: string;
   private subscription: ISubscription;
 
-  constructor(private activatedRoute: ActivatedRoute, private _readBoardService: ReadBoardService, private router: Router) {
+  constructor(private activatedRoute: ActivatedRoute, private _readBoardService: ReadBoardService, private router: Router, private commonUtils: CommonUtils) {
     console.log('Query Params === ' + JSON.stringify(activatedRoute.snapshot.params));
     this.id = activatedRoute.snapshot.params['id'];
   }
@@ -33,11 +34,11 @@ export class StoryBoardComponent implements OnInit, OnDestroy {
       error => this.errorMessage = <any>error);
   }
 
-  getLocaleDate() {
-    return new Date(this.story.createdDate).toLocaleString();
-  }
-
   ngOnDestroy() {
     this.subscription.unsubscribe();
+  }
+
+  getLocalDate() {
+    return this.commonUtils.getLocaleDate((this.story.modifiedDate == null || this.story.modifiedDate === '') ? this.story.createdDate : this.story.modifiedDate);
   }
 }

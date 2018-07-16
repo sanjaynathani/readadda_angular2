@@ -1,7 +1,7 @@
-<div>
+<div style="margin-top: 0.5%">
     <mat-card *ngIf="story" class="mat-elevation-z7">
+      <div style="float: right"><b>{{getLocalDate()}}</b></div>
       <mat-card-title>{{story.title}}</mat-card-title>
       <mat-card-content><div [innerHTML]="story.content"></div></mat-card-content>
-      <mat-card-footer>{{getLocaleDate()}}</mat-card-footer>
     </mat-card>
 </div>

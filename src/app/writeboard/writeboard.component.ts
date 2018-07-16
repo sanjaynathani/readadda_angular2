@@ -3,6 +3,8 @@ import {FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
 import {Story} from '../entity/story';
 import {AuthenticationService} from '../security/authentication.service';
 import {WriteboardService} from './writeboard.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'writeboard',
@@ -30,7 +32,7 @@ export class WriteBoardComponent implements OnInit {
   };
   private storyShortDescription = '';
 
-  constructor(private  formBuilder: FormBuilder, private _writeboardService: WriteboardService) {}
+  constructor(private  formBuilder: FormBuilder, private _writeboardService: WriteboardService, private snackBar: MatSnackBar, private router: Router,  private route: ActivatedRoute) {}
 
   ngOnInit() {
       console.info('Loading WriteBoard');
@@ -82,6 +84,10 @@ export class WriteBoardComponent implements OnInit {
           console.log('Error submiting story!');
         } else {
           console.log('Story submitted Succesfully! Story Id=', story.id);
+          this.snackBar.open('Story submitted Succesfully!', 'Ok', {
+            duration: 2000,
+          });
+          this.router.navigate(['story', {id: story.id}], {relativeTo: this.route});
         }
       });
   }
@@ -89,5 +95,4 @@ export class WriteBoardComponent implements OnInit {
   tabSelectionChanged(event) {
     console.log('Tab selection change event = ', event.tab.textLabel);
   }
-
 }

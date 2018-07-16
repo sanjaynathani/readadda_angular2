@@ -22,11 +22,13 @@ import {
   MatSidenavModule,
   MatListModule,
   MatProgressBarModule,
-  MatExpansionModule, MatFormFieldModule
+  MatExpansionModule, MatFormFieldModule, MatSnackBarModule
 } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {ReadBoardModule} from './readboard/readboard.module';
 import {ReadBoardComponent} from './readboard/readboard.component';
+import {CommonUtils} from './util/common.utils';
+import {DatePipe} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -51,7 +53,8 @@ import {ReadBoardComponent} from './readboard/readboard.component';
     MatListModule,
     MatProgressBarModule,
     MatExpansionModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatSnackBarModule
   ],
   exports: [
     MatSidenavModule,
@@ -59,7 +62,7 @@ import {ReadBoardComponent} from './readboard/readboard.component';
     MatIconModule,
     MatListModule
   ],
-  providers: [AuthGuard, Authentication, AuthenticationService],
+  providers: [AuthGuard, Authentication, AuthenticationService, DatePipe, CommonUtils],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
