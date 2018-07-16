@@ -4,7 +4,15 @@ import { ReadBoardService } from './readboard.service';
 import { CommonModule } from '@angular/common';
 import { ReadBoardRoutingModule } from './readboard.routing.module';
 import { StoryBoardComponent } from './storyboard.component';
-import {MatCardModule, MatDividerModule, MatFormFieldModule, MatInputModule, MatProgressBarModule} from '@angular/material';
+import {
+  MatCardModule,
+  MatDividerModule,
+  MatFormFieldModule,
+  MatIconModule,
+  MatInputModule,
+  MatMenuModule,
+  MatProgressBarModule
+} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -18,7 +26,9 @@ import {MatCardModule, MatDividerModule, MatFormFieldModule, MatInputModule, Mat
     MatInputModule,
     MatProgressBarModule,
     MatCardModule,
-    MatDividerModule
+    MatDividerModule,
+    MatIconModule,
+    MatMenuModule
   ],
   providers: [ReadBoardService],
   exports: [ReadBoardComponent]

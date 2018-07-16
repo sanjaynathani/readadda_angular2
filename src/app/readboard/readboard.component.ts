@@ -5,6 +5,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import {ReadlistType} from '../entity/readlist.type';
 import {CommonUtils} from '../util/common.utils';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'readboard',
@@ -20,7 +21,7 @@ export class ReadBoardComponent implements OnInit {
   selectedStory: Story;
   errorMessage: string;
   showProgressBar = false;
-  constructor(private _readboardService: ReadBoardService, private router: Router, private route: ActivatedRoute, private commonUtils: CommonUtils) {}
+  constructor(private _readboardService: ReadBoardService, private router: Router, private route: ActivatedRoute, private snackBar: MatSnackBar, private commonUtils: CommonUtils) {}
 
   ngOnInit() {
       console.info('Loading ReadBoard: ', this.type);
@@ -52,7 +53,22 @@ export class ReadBoardComponent implements OnInit {
   }
   openStory(id) {
       this.router.navigate(['story', {id: id}], {relativeTo: this.route});
+  }
 
+  deleteStory(id) {
+    this._readboardService.deleteStory(id)
+      .do(s => this.showProgressBar = false)
+      .subscribe(
+        stories =>  {
+          console.log('Story deleted Succesfully! Story Id=', id);
+          this.snackBar.open('Story deleted Succesfully!  Story Id=' + id, 'Ok', {
+            duration: 5000,
+          });
+          this.stories = [];
+          this.getStories();
+          this.router.navigate(['readBoard']);
+        },
+        error =>  this.errorMessage = <any>error);
   }
 
   getDateTime() {
