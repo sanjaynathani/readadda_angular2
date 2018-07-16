@@ -17,14 +17,20 @@ export class URLMapper {
 
 export interface ServiceURL {
     loginURL();
+    createUserURL();
     storyListURL();
     storyURL(storyId);
     submitStoryURL();
+    deleteStoryURL(storyId);
 }
 
 export class TestURL implements ServiceURL {
   public loginURL() {
     return 'https://taleaddaapi.herokuapp.com/taleadda/authenticate';
+  }
+
+  public createUserURL() {
+    return 'https://taleaddaapi.herokuapp.com/taleadda/createUser';
   }
 
   public storyListURL() {
@@ -38,12 +44,18 @@ export class TestURL implements ServiceURL {
   public submitStoryURL() {
     return 'https://taleaddaapi.herokuapp.com/taleadda/story/submit';
   }
+
+  public deleteStoryURL(storyId) {
+    return 'https://taleaddaapi.herokuapp.com/taleadda/deleteStory/' + storyId;
+  }
 }
 
 export class RestEndPointURL implements ServiceURL {
     public loginURL() {  } // Not Implemented!
+    public createUserURL() {  } // Not Implemented!
     public storyListURL() {  } // Not Implemented!
     public storyURL(storyId) {  } // Not Implemented!
     public submitStoryURL() {  } // Not Implemented!
+    public deleteStoryURL(storyId) {  } // Not Implemented!
 }
 

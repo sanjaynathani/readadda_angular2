@@ -48,6 +48,13 @@ export class ReadBoardService {
       .catch(this.handleStoryDetailError);
   }
 
+  deleteStory(id: string) {
+    const storyUrl = URLMapper.getURL().deleteStoryURL(id);
+    return this.http.delete<any>(storyUrl)
+      .do(data => console.log(data))
+      .catch(this.handleStoryDetailError);
+  }
+
   private handleStoryDetailError(error: Response) {
     // in a real world app, we may send the error to some remote logging infrastructure
     // instead of just logging it to the console
