@@ -22,19 +22,22 @@ import {
   MatSidenavModule,
   MatListModule,
   MatProgressBarModule,
-  MatExpansionModule, MatFormFieldModule, MatSnackBarModule
+  MatExpansionModule, MatFormFieldModule, MatSnackBarModule, MatDialogModule, MatButtonModule
 } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {ReadBoardModule} from './readboard/readboard.module';
 import {ReadBoardComponent} from './readboard/readboard.component';
 import {CommonUtils} from './util/common.utils';
 import {DatePipe} from '@angular/common';
+import {CanDeactivateGuard} from './security/canDeactivateGuard';
+import {InfoDialogComponent} from './component/info.dialog';
 
 @NgModule({
   declarations: [
     AppComponent,
     LayoutComponent,
-    EmailValidatorDirective
+    EmailValidatorDirective,
+    InfoDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -54,15 +57,13 @@ import {DatePipe} from '@angular/common';
     MatProgressBarModule,
     MatExpansionModule,
     MatFormFieldModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDialogModule,
+    MatButtonModule
   ],
-  exports: [
-    MatSidenavModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatListModule
-  ],
-  providers: [AuthGuard, Authentication, AuthenticationService, DatePipe, CommonUtils],
+  entryComponents: [InfoDialogComponent],
+  exports: [],
+  providers: [AuthGuard, Authentication, AuthenticationService, DatePipe, CommonUtils, CanDeactivateGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

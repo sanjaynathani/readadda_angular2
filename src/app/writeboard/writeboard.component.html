@@ -17,7 +17,8 @@
           <input placeholder="Search Tags" matInput id="topicSearchTags" formControlName="searchTags" />
         </mat-form-field>
 
-        <button type="submit" class="btn btn-primary" >Publish</button>
+        <button type="button" mat-raised-button class="mat-elevation-z2" (click)="onReset()"><b>Reset</b></button>&nbsp;&nbsp;&nbsp;
+        <button type="submit" mat-raised-button class="mat-elevation-z2"><b>Publish</b></button>
       </mat-card>
     </form>
 
