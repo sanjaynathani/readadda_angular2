@@ -4,9 +4,10 @@ import {CommonModule} from '@angular/common';
 import {WriteBoardRoutingModule} from './writeboard.routing.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { QuillEditorModule } from 'ngx-quill-editor';
-import {MatCardModule, MatInputModule, MatSnackBarModule, MatTabsModule} from '@angular/material';
+import {MatButtonModule, MatCardModule, MatInputModule, MatSnackBarModule, MatTabsModule} from '@angular/material';
 import {ReadBoardModule} from '../readboard/readboard.module';
 import {ReadBoardComponent} from '../readboard/readboard.component';
+import {InfoDialogComponent} from '../component/info.dialog';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import {ReadBoardComponent} from '../readboard/readboard.component';
     MatInputModule,
     MatCardModule,
     MatTabsModule,
-    ReadBoardModule
+    ReadBoardModule,
+    MatButtonModule
   ],
   providers: []
 })

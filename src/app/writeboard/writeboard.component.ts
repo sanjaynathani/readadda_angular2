@@ -6,6 +6,7 @@ import {WriteboardService} from './writeboard.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material';
 
+
 @Component({
   selector: 'writeboard',
   templateUrl: 'writeboard.component.html'
@@ -63,15 +64,6 @@ export class WriteBoardComponent implements OnInit {
 
   onContentChanged({ quill, html, text }) {
     console.log('quill content is changed!', quill, html, text);
-    console.log('Before ->', this.storyShortDescription)
-    if (this.storyShortDescription === '') {
-      this.storyShortDescription = text.length > 100 ? text.substr(0, 100 ) : text;
-    }
-
-    if (this.storyShortDescription.length < 100) {
-      this.storyShortDescription = this.story.storyShortDescription + text;
-    }
-    console.log('After ->', this.storyShortDescription);
   }
 
   onPublish() {
@@ -94,5 +86,12 @@ export class WriteBoardComponent implements OnInit {
 
   tabSelectionChanged(event) {
     console.log('Tab selection change event = ', event.tab.textLabel);
+  }
+
+  onReset() {
+    this.writeStoryForm.reset();
+  }
+  canDeactivate(): boolean {
+    return this.writeStoryForm.pristine;
   }
 }
